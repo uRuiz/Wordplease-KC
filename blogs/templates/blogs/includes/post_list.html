@@ -1,0 +1,28 @@
+{% load i18n %}
+    {% for post in object_list %}
+        <a href="{% url 'post_detail' post.blog.owner.username post.pk %}" title="{{ post.title }}">
+            <div class="thumbnail wow bounceIn" data-wow-delay="{{ forloop.counter }}00ms">
+                <div class="row">
+                    {% if post.image_url %}
+                        <div class="col-xs-12 col-sm-3 col-md-4">
+                            <img class="img-responsive" src="{{ post.image_url }}" alt="{{ post.title }}">
+                        </div>
+                        <div class="col-xs-12 col-sm-9 col-md-8">
+                    {% else %}
+                        <div class="col-xs-12">
+                    {% endif %}
+                        <div class="caption">
+                            <h2>{{ post.title }}</h2>
+                            <p class="lead">{{ post.intro }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    {% empty %}
+        <div class="jumbotron wow bounceIn">
+            <h1>{% trans "No posts here" %}</h1>
+            <p>{% trans "We are sorry, but nobody has published any post yet." %}</p>
+        </div>
+    {% endfor %}
+{% include 'blogs/includes/paginator.html' %}

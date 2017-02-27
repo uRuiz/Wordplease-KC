@@ -1,0 +1,8 @@
+<div class="page-header">
+    <a href="{% url 'blog_detail' username %}">
+        <h1>{{ blog.name }}</h1>
+    </a>
+    {% if blog.description %}
+        <p>{{ blog.description }}</p>
+    {% endif %}
+</div>

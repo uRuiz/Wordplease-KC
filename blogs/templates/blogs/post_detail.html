@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load l10n %}
+{% block section %}
+    {% include "blogs/includes/blog_header.html" %}
+    <h1>{{ object.title }}</h1>
+    {% if object.image_url %}
+        <img class="thumbnail img-responsive" src="{{ object.image_url }}" alt="{{ object.title }}">
+    {% endif %}
+    <div class="well well-sm">
+        {% trans "Published in" %}
+        {{ object.categories.all|join:", " }}
+        {% trans "on" %}
+        {{ object.publish_date|localize }}
+    </div>
+    <div>
+        {{ object.body|safe }}
+    </div>
+{% endblock %}

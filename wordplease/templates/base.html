@@ -1,0 +1,70 @@
+{% load i18n %}
+{% load staticfiles %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% trans "Wordplease: the politest blog platform" %} {% endblock %}</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-theme.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">{% trans "Toggle navigation" %}</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">{% trans "Wordplease" %}</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'latest_posts' %}">{% trans "Home" %}</a></li>
+                    <li><a href="{% url 'blog_list' %}">{% trans "Blogs" %}</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'new_post' %}">{% trans "New Post" %}</a></li>
+                        <li><a href="{% url 'blog_detail' user.username %}">{% trans "My blog" %}</a></li>
+                        <li><a href="{% url 'users_profile' %}">{% trans "My profile" %}</a></li>
+                        <li><a href="{% url 'users_logout' %}">{% trans "Logout" %}</a></li>
+                    {% else %}
+                        <li><a href="{% url 'users_signup' %}">{% trans "Signup" %}</a></li>
+                        <li><a href="{% url 'users_login' %}">{% trans "Login" %}</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="col-xs-12">
+            <section>{% block section %}{% endblock %}</section>
+        </div>
+    </div>
+
+    <footer class="text-center">
+        <div class="container">
+            <div class="col-xs-12">
+                <hr>
+                <small>{% trans "Wordplease" %} &copy; {% now "Y" %}</small>
+            </div>
+        </div>
+    </footer>
+
+    {% block body_extra %}{% endblock %}
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script>
+        window.addEventListener("load", function(){
+            new WOW().init();
+        });
+    </script>
+</body>
+</html>

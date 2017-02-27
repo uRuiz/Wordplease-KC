@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block section %}
+     <div class="jumbotron">
+        <h1>{% trans "Your welcome!" %}</h1>
+        <p>{% trans "Thank you to signup into Wordplease. " %}</p>
+        <a href="{% url 'users_login' %}" class="btn btn-primary">
+            {% trans "Login now" %}
+        </a>
+    </div>
+{% endblock %}

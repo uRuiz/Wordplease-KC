@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block section %}
+    {% include "blogs/includes/blog_header.html" %}
+    <div class="row">
+        <div class="col-xs-12 col-md-9">
+            {% include "blogs/includes/post_list.html" %}
+        </div>
+        <div class="col-xs-12 col-md-3">
+            {% include "blogs/includes/categories_list.html" %}
+        </div>
+    </div>
+{% endblock %}

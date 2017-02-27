@@ -1,0 +1,16 @@
+{% load i18n %}
+<h3>{% trans "Categories" %}</h3>
+<div class="list-group">
+    {% for category in categories %}
+        <a href="?category={{ category.pk }}"
+                {% comment %} Casts both values to int {% endcomment %}
+                {% if request.GET.category|add:"0" == category.pk|add:"0" %}
+           class="list-group-item active wow bounceIn"
+                {% else %}
+           class="list-group-item wow bounceIn"
+                {% endif %}
+           data-wow-delay="{{ forloop.counter }}00ms">
+            {{ category.name }}
+        </a>
+    {% endfor %}
+</div>

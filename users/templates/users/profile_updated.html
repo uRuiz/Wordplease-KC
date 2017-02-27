@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block section %}
+     <div class="jumbotron">
+        <h1>{% trans "Profile updated!" %}</h1>
+        <p>{% trans "Your profile data has been updated successfully" %}</p>
+        <a href="{% url 'users_profile' %}" class="btn btn-primary">
+            {% trans "Back to my profile" %}
+        </a>
+    </div>
+{% endblock %}

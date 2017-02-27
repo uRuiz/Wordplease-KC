@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block section %}
+    <div class="page-header">
+      <h1>
+          {% trans "Latest posts" %}
+          <small>
+              {% blocktrans with count=object_list|length %}
+                  ({{ count }} and counting)
+              {% endblocktrans %}
+          </small>
+      </h1>
+    </div>
+    {% include "blogs/includes/post_list.html" %}
+{% endblock %}
